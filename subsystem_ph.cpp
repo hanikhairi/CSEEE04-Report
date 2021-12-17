@@ -8,6 +8,8 @@
  * Date: 2021/12/11
  * Version: 1.0
  **************************************************************/
+//The code for calculating average voltage readings and converting voltage readings to pH are adapted from:
+//https://scidle.com/how-to-use-a-ph-sensor-with-arduino/
 
 #include "subsystem_ph.h"
 #include <Arduino.h>
@@ -38,7 +40,7 @@ void PHSubsystem::readCurrentPH() {
         avgValue += buf[i];
 
     float pHVol = (float) avgValue * 5.0f / 1024 / 6;
-    currentPH = -5.70f * pHVol + 21.34f;
+    currentPH = pHVol + 0.455;
 }
 
 /**
